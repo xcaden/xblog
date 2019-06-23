@@ -2,16 +2,13 @@ package main
 
 import (
     "net/http"
+    "github.com/xcaden/xblog/handlers"
     "github.com/gorilla/mux"
 )
 
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
-    w.Write([]byte("hello, world"))
-}
-
 func main() {
     r := mux.NewRouter()
-    r.HandleFunc("/", HomeHandler)
+    r.HandleFunc("/", handlers.HomeHandler)
     http.Handle("/", r)
 
     http.ListenAndServe(":12345", nil)
