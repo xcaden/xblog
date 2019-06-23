@@ -2,8 +2,8 @@ package main
 
 import (
     "net/http"
-    "github.com/xcaden/xblog/handlers"
     "github.com/gorilla/mux"
+    "github.com/xcaden/xblog/handlers"
 )
 
 func main() {
