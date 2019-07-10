@@ -1,23 +1,95 @@
 <html>
     <head>
         <title>Xblog</title>
-        <script text="javascript" src="/static/js/jquery-3.4.1.min.js"></script>
+        <script text="javascript" src="/static/js/vue.js"></script>
     </head>
 
     <body>
-        <div align="center">
-        Name:<input id="name"></input><br> 
-        Email:<input id="email"></input><br> 
-        <button id="add_btn">ADD</button>
+
+        <div id="app">
+            {{ message }}
+        </div>
+
+        <div id="app-2">
+            <span v-bind:title="message">
+                hold on
+            </span>
+        </div>
+
+        <div id="app-3">
+            <p v-if="seen">you can see me</p>
+        </div>
+
+        <div id="app-4">
+            <ol>
+                <li v-for="todo in todos">
+                    {{ todo.text }}
+                </li>
+            </ol>
+        </div>
+
+        <div id="app-5">
+            <p>{{ message }}</p>
+            <button v-on:click="reverseMessage">反转消息</button>
+        </div>
+
+        <div id="app-6">
+            <p>{{ message }}</p>
+            <input v-model="message">
         </div>
     </body>    
 
 </html>
 
 <script>
-$( document ).ready(function() {
-    $("#add_btn").click(function(){
-        alert("add something");
-    }); 
-});
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        }
+    });
+
+    var app2 = new Vue({
+        el: '#app-2',
+        data: {
+            message: 'page loading ' + new Date().toLocaleString()
+        }
+    });
+
+    var app3 = new Vue({
+        el: '#app-3',
+        data: {
+            seen: true 
+        }
+    });
+
+    var app4 = new Vue({
+        el: '#app-4',
+        data: {
+            todos: [
+                {text: 'list1'},
+                {text: "list2"},
+                {text: "list3"}
+            ]
+        }
+    });
+
+    var app5 = new Vue({
+        el: '#app-5',
+        data: {
+            message: 'hello vue.js!'
+        },
+        methods: {
+            reverseMessage: function(){
+                this.message = this.message.split("").reverse().join("")
+            }
+        }
+    });
+
+    var app6 = new Vue({
+        el: "#app-6",
+        data: {
+            message: "hello vue"
+        }
+    });
 </script>
